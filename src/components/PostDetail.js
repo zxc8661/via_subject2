@@ -13,6 +13,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 import '@toast-ui/editor/dist/toastui-editor-viewer.css'
 import { Viewer } from '@toast-ui/react-editor'
+import CustomModal from './Modal'
 
 const Container = styled.div`
     width: 100%;
@@ -204,6 +205,7 @@ function PostDetail() {
     const { id } = useParams()
     const navigator = useNavigate()
     const user = useUser()
+    const [modalIsOpen, setModalIsOpen] = useState(false)
 
     const posts = usePostState()
     const postsdispatch = usePostDispatch()
@@ -214,17 +216,21 @@ function PostDetail() {
     const [newcomment, SetNewComment] = useState('')
 
     const WriteComment = () => {
-        const newcommentdata = {
-            id: comments.length + 1,
-            postId: Number(id),
-            author: user.current,
-            text: newcomment,
-            date: '2024.06.28. 15:41',
-            likes: 0,
-        }
+        if (newcomment === '') {
+            setModalIsOpen('true')
+        } else {
+            const newcommentdata = {
+                id: comments.length + 1,
+                postId: Number(id),
+                author: user.current,
+                text: newcomment,
+                date: '2024.06.28. 15:41',
+                likes: 0,
+            }
 
-        commentsdispatch({ type: 'WRITE', data: newcommentdata })
-        SetNewComment('')
+            commentsdispatch({ type: 'WRITE', data: newcommentdata })
+            SetNewComment('')
+        }
     }
 
     const PostDelet = () => {
@@ -299,6 +305,10 @@ function PostDetail() {
                     />
                     <NewCommentButton onClick={WriteComment}>
                         등록
+                        <CustomModal
+                            type="댓글을"
+                            state={modalIsOpen}
+                        ></CustomModal>
                     </NewCommentButton>
                 </NewComment>
             </Comments>
