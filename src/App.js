@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import React from 'react'
+import { GlobalStyle, Head } from './components/PostHead'
+import Posts from './components/Posts'
+import { Provider } from './components/Provider'
+import User from './components/Foot'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Provider>
+                <GlobalStyle />
+                <Head />
+                <Posts />
+                <User />
+            </Provider>
+        </>
+    )
 }
 
-export default App;
+export default App
