@@ -28,13 +28,12 @@ const TuiEditor: React.FC<Props> = ({ content, editorRef, setBody }) => {
     <Editor
       initialValue={content ?? ' '}
     initialEditType='wysiwyg'
-        // 변경: previewStyle을 vertical로 설정
       autofocus={false}
       ref={editorRef}
       toolbarItems={toolbar}
       hideModeSwitch={true}
       height='500px'
-      usageStatistics={false}  // 변경: usageStatistics를 false로 설정
+      usageStatistics={false} 
      onChange={onChangeGetHTML}
     />
   );

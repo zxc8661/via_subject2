@@ -1,6 +1,6 @@
 import React, { useReducer, createContext, useRef, useContext } from 'react'
 
-const now = new Date() // 현재 날짜와 시간 생성
+const now = new Date()
 const formattedDate = now.toLocaleString('en-US', {
     year: 'numeric',
     month: '2-digit',
